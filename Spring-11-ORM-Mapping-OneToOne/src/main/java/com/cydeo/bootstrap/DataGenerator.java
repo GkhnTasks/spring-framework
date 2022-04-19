@@ -6,18 +6,30 @@ import com.cydeo.enums.Gender;
 import com.cydeo.repository.DepartmentRepository;
 import com.cydeo.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+@Component
 public class DataGenerator implements CommandLineRunner {
-
 
     EmployeeRepository employeeRepository;
     DepartmentRepository departmentRepository;
 
+    public DataGenerator(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
+        this.employeeRepository = employeeRepository;
+        this.departmentRepository = departmentRepository;
+    }
+
+
     @Override
     public void run(String... args) throws Exception {
 
+        List<Employee> employeeList= new ArrayList<>();
+        List<Department> departmentsList=new ArrayList<>();
         Employee e1 = new Employee("Berrie", "Manueau", "bmanueau0@dion.ne.jp", LocalDate.of(2006,04,20), Gender.F,154864);
         Employee e2 = new Employee("Aeriell", "McNee", "amcnee1@google.es", LocalDate.of(2009,01,26), Gender.F,56752);
         Employee e3 = new Employee("Sydney", "Symonds", "ssymonds2@hhs.gov", LocalDate.of(2010,05,17), Gender.F,95313);
@@ -29,5 +41,11 @@ public class DataGenerator implements CommandLineRunner {
         Department d3 = new Department("Clothing","Home");
         Department d4 = new Department("Phones & Tablets","Electronics");
         Department d5 = new Department("Computers","Electronics");
+
+        employeeList.addAll(Arrays.asList(e1,e2,e3,e4,e5));
+        departmentsList.addAll(Arrays.asList(d1,d2,d3,d4,d5));
+
+        employeeRepository.saveAll(employeeList);
+        departmentRepository.saveAll(departmentsList);
     }
 }
