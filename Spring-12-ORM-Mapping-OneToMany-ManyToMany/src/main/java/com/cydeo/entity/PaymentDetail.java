@@ -18,20 +18,20 @@ public class PaymentDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal commissionAmount;
     private BigDecimal merchantPayoutAmount;
+    private BigDecimal commissionAmount;
 
     @Column(columnDefinition = "DATE")
     private LocalDate payoutDate;
 
-    @OneToOne(mappedBy = "paymentDetail")
+
+    @OneToOne(mappedBy = "paymentDetail",cascade=CascadeType.ALL)
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
-    public PaymentDetail(BigDecimal commissionAmount, BigDecimal merchantPayoutAmount, LocalDate payoutDate) {
-        this.commissionAmount = commissionAmount;
+    public PaymentDetail(BigDecimal merchantPayoutAmount, BigDecimal commissionAmount, LocalDate payoutDate) {
         this.merchantPayoutAmount = merchantPayoutAmount;
+        this.commissionAmount = commissionAmount;
         this.payoutDate = payoutDate;
-
     }
 }

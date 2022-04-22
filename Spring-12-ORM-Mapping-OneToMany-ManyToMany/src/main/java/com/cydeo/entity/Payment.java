@@ -20,20 +20,24 @@ public class Payment {
     private Long id;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate createDate;
+    private LocalDate createdDate;
 
     private BigDecimal amount;
-
     private Status paymentStatus;
 
-    @OneToOne
-    @JoinColumn(name = "paymentDetail_id")
+
+    @OneToOne(cascade = CascadeType.ALL)
     private PaymentDetail paymentDetail;
 
-    public Payment( LocalDate createDate,BigDecimal amount, Status paymentStatus) {
-        this.amount = amount;
-        this.createDate = createDate;
-        this.paymentStatus = paymentStatus;
+    @ManyToOne
+    private  Merchant merchant;
 
+    @ManyToOne
+    private Customer customer;
+
+    public Payment(LocalDate createdDate, BigDecimal amount, Status paymentStatus) {
+        this.createdDate = createdDate;
+        this.amount = amount;
+        this.paymentStatus = paymentStatus;
     }
 }
