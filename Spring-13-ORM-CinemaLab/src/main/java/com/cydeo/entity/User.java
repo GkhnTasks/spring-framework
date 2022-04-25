@@ -14,10 +14,10 @@ public class User extends BaseEntity{
 
     private String email;
     private String password;
-    private String userName;
+    private String username;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_details_id")
-    private Account accountDetails;
+    private Account account;
 
 }
