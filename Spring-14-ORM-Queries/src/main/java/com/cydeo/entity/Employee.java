@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Employee extends BaseEntity{
 
     private String firstName;
-    private String lastname;
+    private String lastName;
     private String email;
     @Column(columnDefinition = "DATE")
     private LocalDate hireDate;
