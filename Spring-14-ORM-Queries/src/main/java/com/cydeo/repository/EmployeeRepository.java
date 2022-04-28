@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.nio.file.attribute.UserPrincipalLookupService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -54,5 +55,37 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query("select e from Employee  e where  e.email=?1 and  e.salary=?2")
     Employee getEmployeeDetail(String email,int salary);
+
+    //Not equal
+    @Query("select e from Employee  e where e.salary <> ?1")
+    List<Employee> getEmployeeSalaryNotEqual(int salary);
+
+    //Like/contains/startwith/endwith
+    @Query("select  e from  Employee  e where  e.firstName like  ?1")
+    List<Employee> getEmployeeFirstNameLike(String  pattern);
+
+    //less than
+    @Query("select e from Employee e where e.salary< ?1")
+    List<Employee> getEmployeeSalaryLessThan(int salary);
+
+    //greater than
+    @Query("select e from Employee e where e.salary>?1")
+    List<Employee> getEmployeeSalaryGreaterThan(int salary);
+
+    //before
+    @Query("select e from Employee  e where e.hireDate> ?1")
+    List<Employee> getEmployeeHireDateBefore(LocalDate date);
+
+    //between
+    @Query("select  e from Employee  e where  e.salary between ?1 and ?2")
+    List<Employee> getEmployeeSalaryBetween(int salary1, int salary2);
+
+    //Not null
+    @Query("select e from Employee  e where  e.email is not null ")
+    List<Employee> getEmployeeEmailIsNull();
+
+
+
+
 
 }
