@@ -6,8 +6,10 @@ import com.cydeo.repository.EmployeeRepository;
 import com.cydeo.repository.RegionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+
 public class DataGenerator implements CommandLineRunner {
 
     private final RegionRepository regionRepository;
@@ -23,6 +25,7 @@ public class DataGenerator implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 
 
@@ -72,7 +75,7 @@ public class DataGenerator implements CommandLineRunner {
 
         courseRepository.findByNameStartingWith("Scalable").forEach(System.out::println);
 
-       // courseRepository.streamByCategory("Spring").forEach(System.out::println);
+        courseRepository.streamByCategory("Spring").forEach(System.out::println);
 
 
 
