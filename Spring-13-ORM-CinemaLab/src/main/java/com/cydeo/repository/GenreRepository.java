@@ -14,8 +14,8 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
     // ------------------- JPQL QUERIES ------------------- //
 
     //Write a JPQL query that return all genres
-    @Query("SELECT g FROM Genre g")
-    List<Genre> fetchAll();
+   @Query("SELECT g from Genre g")
+   List<Genre>  fetchAll();
 
     // ------------------- Native QUERIES ------------------- //
 
