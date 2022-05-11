@@ -15,31 +15,32 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     // ------------------- DERIVED QUERIES ------------------- //
 
     //Write a derived query to list all accounts with a specific country or state
-    List<Account> findAllByCountryOrState(String country, String state);
+    List<Account> findByCountryOrState(String country,String state);
 
     //Write a derived query to list all accounts with age lower than or equal to a specific value
-    List<Account> findAllByAgeLessThanEqual(Integer age);
+    List<Account> findByAgeIsLessThanEqual(Integer age);
 
     //Write a derived query to list all accounts with a specific role
-    List<Account> findAllByRole(UserRole role);
+    List<Account> findByRole(UserRole role);
 
     //Write a derived query to list all accounts between a range of ages
-    List<Account> findAllByAgeBetween(Integer age1, Integer age2);
+    List<Account> findByAgeBetween(Integer age1,Integer age2);
 
     //Write a derived query to list all accounts where the beginning of the address contains the keyword
-    List<Account> findByAddressStartingWith(String keyword);
+    List<Account>  findByAddressStartingWith(String word);
 
     //Write a derived query to sort the list of accounts with age
     List<Account> findByOrderByAgeDesc();
 
+
     // ------------------- JPQL QUERIES ------------------- //
 
     //Write a JPQL query that returns all accounts
-    @Query("SELECT a FROM Account a")
+    @Query("SELECT a FROM  Account a")
     List<Account> fetchAllJPQL();
 
     //Write a JPQL query to list all admin accounts
-    @Query("SELECT a FROM Account a WHERE a.role = 'ADMIN'")
+    @Query("SELECT a from Account a where a.role='ADMIN'")
     List<Account> fetchAdminUsers();
 
     //Write a JPQL query to sort all accounts with age
