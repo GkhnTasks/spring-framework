@@ -33,4 +33,6 @@ public class Movie  extends BaseEntity{
    joinColumns = @JoinColumn(name = "movie_id"),
    inverseJoinColumns = @JoinColumn(name = "genre_id"))
    private List<Genre> genreList;
+
+
 }
