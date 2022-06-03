@@ -1,5 +1,6 @@
 package com.cydeo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ public class User extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_details_id")
+    @JsonManagedReference // is the forward part of reference - the one that gets serialized normally
     private Account account;
 
 }
