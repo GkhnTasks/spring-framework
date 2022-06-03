@@ -2,6 +2,7 @@ package com.cydeo.entity;
 
 import com.cydeo.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Table(name = "account_details")
-@JsonIgnoreProperties(value = {"state","postalCode"},ignoreUnknown = true)
+//@JsonIgnoreProperties(value = {"state","postalCode"},ignoreUnknown = true)
+@JsonIgnoreProperties(value = "{hibernateLazyInitializer}",ignoreUnknown = true)
 public class Account extends BaseEntity {
 
     private String name;
+    @JsonIgnore
     private String address;
     private String country;
     private String state;
