@@ -4,9 +4,7 @@ import com.cydeo.dto.CourseDTO;
 import com.cydeo.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,20 @@ public class CourseController_ResponseEntity {
                 .header("Version","Vydeo.V2")
                 .header("Operation", "Get List")
                 .body(courseService.getCourses());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable("id") Long courseId){
+
+        return ResponseEntity.ok(courseService.getCourseById(courseId));
+
+    }
+
+    @PostMapping
+    public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO course){
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Operation","Create")
+                .body(courseService.createCourse(course));
     }
 }
